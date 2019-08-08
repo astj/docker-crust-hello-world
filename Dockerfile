@@ -7,7 +7,7 @@ ENV PATH /usr/share/perl6/site/bin:$PATH
 WORKDIR /app/
 COPY hello.p6w /app/
 # XXX: zef install Crust sometimes install crustup.bat (NOT crustup!) as crustup and it does not work, therefore we copy REAL crustup
-COPY crustup /app/
+ADD https://github.com/tokuhirom/p6-Crust/raw/master/bin/crustup /app/
 
 EXPOSE 5000
 ENTRYPOINT ["./crustup"]
