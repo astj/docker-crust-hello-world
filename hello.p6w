@@ -1,10 +1,18 @@
 use v6;
 
-sub app($env) {
-    if ($env<PATH_INFO> && $env<PATH_INFO> eq '/exit') {
-        say 'good bye!';
-        exit;
-    }
-    return 200, ['Content-Type' => 'text/plain'], ["hello!!!\n"];
+use Crust::Builder;
+
+my $inner_app = -> $env {
+    start {
+        if ($env<PATH_INFO> && $env<PATH_INFO> eq '/exit') {
+            say 'good bye!';
+            exit;
+        }
+        200, ['Content-Type' => 'text/plain'], ["hello!!!\n"];
+    };
 }
 
+my $app = builder {
+    enable "AccessLog", :format('%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"');
+    $inner_app;
+}
