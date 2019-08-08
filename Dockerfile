@@ -8,6 +8,7 @@ WORKDIR /app/
 COPY hello.p6w /app/
 # XXX: zef install Crust sometimes install crustup.bat (NOT crustup!) as crustup and it does not work, therefore we copy REAL crustup
 ADD https://github.com/tokuhirom/p6-Crust/raw/master/bin/crustup /app/
+RUN chmod 755 crustup
 
 EXPOSE 5000
 ENTRYPOINT ["./crustup"]
