@@ -10,6 +10,6 @@ COPY hello.p6w /app/
 ADD https://github.com/tokuhirom/p6-Crust/raw/master/bin/crustup /app/
 RUN chmod 755 crustup
 
-EXPOSE 5000
+EXPOSE 3000
 ENTRYPOINT ["./crustup"]
-CMD ["hello.p6w", "--host=0.0.0.0", "--port=5000"]
+CMD ["hello.p6w", "--host=0.0.0.0", "--port=3000"]
